@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  display: flex;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+  background-color: aqua;
+}
+.header {
+  height: 10vh;
+  text-align: center;
+  font-size: large;
+}
+.calculator {
+  width: 25%;
+  height: 80%;
+  /* background-color: magenta; */
+  display: flex;
+  border: 1px solid rgb(0, 0, 0);
+}
+.footer {
+  height: 10vh;
+  background-color: beige;
+}
+
+/* Layout */
+.display {
+  width: 100%;
+  height: 35%;
+  display: grid;
+  grid-template-rows: 1.5fr 1fr;
+  grid-template-columns: 1fr;
+}
+.display > * {
+  border: 1px solid rgb(0, 0, 0);
+}
