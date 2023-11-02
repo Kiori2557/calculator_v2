@@ -16,11 +16,11 @@
   font-size: large;
 }
 .calculator {
-  width: 25%;
+  width: 20%;
   height: 80%;
-  /* background-color: magenta; */
   display: flex;
   border: 1px solid rgb(0, 0, 0);
+  flex-direction: column;
 }
 .footer {
   height: 10vh;
@@ -37,4 +37,18 @@
 }
 .display > * {
   border: 1px solid rgb(0, 0, 0);
+}
+.button {
+  display: grid;
+  height: 100%;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 2fr);
+  gap: 5px;
+}
+.button {
+  border-radius: 5px;
+}
+#addition {
+  grid-row: 3/5;
+  grid-column: 4/5;
 }

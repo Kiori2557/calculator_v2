@@ -4,18 +4,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
+    <!-- JS -->
     <script src="main.js" defer></script>
+    <!-- Fontawesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
-    <div class="header">This is calculator</div>
+    <div class="header">This is not calculator</div>
     <div class="container">
       <div class="calculator">
         <div class="display">
           <div class="input"></div>
           <div class="result"></div>
         </div>
-        <div class="button"></div>
+        <div class="button">
+          <button class="clearBtn">AC</button>
+          <button class="deleteBtn">
+            <i class="fa-solid fa-delete-left"></i>
+          </button>
+          <button class="operatorBtn">x</button>
+          <button class="operatorBtn">÷</button>
+          <button class="numberBtn">7</button>
+          <button class="numberBtn">8</button>
+          <button class="numberBtn">9</button>
+          <button class="operatorBtn">-</button>
+          <button class="numberBtn">4</button>
+          <button class="numberBtn">5</button>
+          <button class="numberBtn">6</button>
+          <button class="operatorBtn" id="addition">+</button>
+          <button class="numberBtn">1</button>
+          <button class="numberBtn">2</button>
+          <button class="numberBtn">3</button>
+          <button class="numberBtn">0</button>
+          <button class="numberBtn">00</button>
+          <button class="numberBtn">.</button>
+          <button class="operatorBtn">=</button>
+        </div>
       </div>
     </div>
     <div class="footer"></div>
