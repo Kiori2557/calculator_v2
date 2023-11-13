@@ -31,12 +31,12 @@
 .display {
   width: 100%;
   height: 35%;
-  display: grid;
-  grid-template-rows: 1.5fr 1fr;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
 }
 .display > * {
   border: 1px solid rgb(0, 0, 0);
+  flex: 1;
 }
 .button {
   display: grid;
