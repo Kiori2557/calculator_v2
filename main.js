@@ -4,24 +4,25 @@ let operator = "";
 let result = "";
 let isLastInputOperator = false;
 
+const inputDisplay = document.querySelector(".input");
+const resultDisplay = document.querySelector(".result");
+const hiddenDisplay = document.querySelector(".calculation");
 const numberBtns = document.querySelectorAll(".numberBtn");
 const operatorBtns = document.querySelectorAll(".operatorBtn");
 const btns = document.querySelectorAll("button");
 const allClear = document.querySelector(".clearBtn");
-const inputDisplay = document.querySelector(".input");
-const resultDisplay = document.querySelector(".result");
-const hiddenDisplay = document.querySelector(".calculation");
+const deleteBtn = document.querySelector(".deleteBtn");
 
 numberBtns.forEach((numberBtn) => {
   numberBtn.addEventListener("click", () => {
+    if (operand2 == "0") {
+      deleteLastInput();
+    }
     appendNumber(numberBtn);
     isLastInputOperator = false;
     if (operand1) {
       operand2 += numberBtn.textContent;
       calculate(operand1, operand2, operator);
-      console.log(operand1);
-      console.log(operator);
-      console.log(operand2);
     }
   });
 });
@@ -38,8 +39,7 @@ operatorBtns.forEach((operatorBtn) => {
         operand1 = hiddenDisplay.textContent;
       }
       if (isLastInputOperator) {
-        inputDisplay.textContent = inputDisplay.textContent.slice(0, -1);
-        hiddenDisplay.textContent = hiddenDisplay.textContent.slice(0, -1);
+        deleteLastInput();
       }
       operator = operatorBtn.textContent;
       appendNumber(operatorBtn);
@@ -49,6 +49,27 @@ operatorBtns.forEach((operatorBtn) => {
 });
 
 allClear.addEventListener("click", resetAll);
+
+deleteBtn.addEventListener("click", () => {
+  deleteLastInput();
+  operand2 = operand2.slice(0, -1);
+  calculate(operand1, operand2, operator);
+  if (!operand2) {
+    isLastInputOperator = true;
+    result = "";
+  }
+  if (!inputDisplay.textContent) {
+    resetAll();
+  }
+  console.log(operand1);
+  console.log(operand2);
+  console.log(operator);
+});
+
+function deleteLastInput() {
+  inputDisplay.textContent = inputDisplay.textContent.slice(0, -1);
+  hiddenDisplay.textContent = hiddenDisplay.textContent.slice(0, -1);
+}
 
 function resetAll() {
   operand1 = "";
