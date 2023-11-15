@@ -13,16 +13,57 @@ const btns = document.querySelectorAll("button");
 const allClear = document.querySelector(".clearBtn");
 const deleteBtn = document.querySelector(".deleteBtn");
 
-numberBtns.forEach((numberBtn) => {
-  numberBtn.addEventListener("click", () => {
-    if (operand2 == "0") {
-      deleteLastInput();
-    }
-    appendNumber(numberBtn);
+window.addEventListener("keydown", function (e) {
+  let keyValue = e.key;
+  if (keyValue >= 0 && keyValue <= 9) {
+    appendNumber(keyValue);
     isLastInputOperator = false;
     if (operand1) {
-      operand2 += numberBtn.textContent;
+      operand2 += keyValue;
       calculate(operand1, operand2, operator);
+    }
+  }
+  if (
+    keyValue == "+" ||
+    keyValue == "-" ||
+    keyValue == "*" ||
+    keyValue == "/"
+  ) {
+    if (inputDisplay.textContent) {
+      if (result) {
+        operand1 = "";
+        operand2 = "";
+        hiddenDisplay.textContent = result;
+      }
+      if (!operand1) {
+        operand1 = hiddenDisplay.textContent;
+      }
+      if (isLastInputOperator) {
+        deleteLastInput();
+      }
+      // operator = keyValue;
+      appendNumber(keyValue);
+      isLastInputOperator = true;
+    }
+  }
+  convertOperator(keyValue);
+  console.log(operand1);
+  console.log(operand2);
+  console.log(operator);
+  console.log(result);
+});
+
+numberBtns.forEach((numberBtn) => {
+  numberBtn.addEventListener("click", () => {
+    console.log(numberBtn);
+    numberValue = numberBtn.textContent;
+    appendNumber(numberValue);
+    isLastInputOperator = false;
+    if (isLastInputOperator) {
+      operand2 += numberValue;
+      calculate(operand1, operand2, operator);
+    } else {
+      operand1 += numberValue;
     }
   });
 });
@@ -42,7 +83,7 @@ operatorBtns.forEach((operatorBtn) => {
         deleteLastInput();
       }
       operator = operatorBtn.textContent;
-      appendNumber(operatorBtn);
+      appendNumber(operator);
       isLastInputOperator = true;
     }
   });
@@ -57,9 +98,7 @@ deleteBtn.addEventListener("click", () => {
   if (!operand2) {
     isLastInputOperator = true;
     result = "";
-  }
-  if (!inputDisplay.textContent) {
-    resetAll();
+    resultDisplay.textContent = "";
   }
   console.log(operand1);
   console.log(operand2);
@@ -75,7 +114,6 @@ function resetAll() {
   operand1 = "";
   operand2 = "";
   operator = "";
-  operator = "";
   result = "";
   isLastInputOperator = false;
   inputDisplay.textContent = "";
@@ -84,8 +122,25 @@ function resetAll() {
 }
 
 function appendNumber(btn) {
-  inputDisplay.textContent += btn.textContent;
-  hiddenDisplay.textContent += btn.textContent;
+  inputDisplay.textContent += btn;
+  hiddenDisplay.textContent += btn;
+}
+
+function convertOperator(keyValue) {
+  switch (keyValue) {
+    case "-":
+      operator = "−";
+      break;
+    case "+":
+      operator = "+";
+      break;
+    case "*":
+      operator = "×";
+      break;
+    case "/":
+      operator = "÷";
+      break;
+  }
 }
 
 function calculate(operand1, operand2, operator) {
