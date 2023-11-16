@@ -55,16 +55,19 @@ window.addEventListener("keydown", function (e) {
 
 numberBtns.forEach((numberBtn) => {
   numberBtn.addEventListener("click", () => {
-    console.log(numberBtn);
     numberValue = numberBtn.textContent;
-    appendNumber(numberValue);
-    isLastInputOperator = false;
-    if (isLastInputOperator) {
+    if (!isLastInputOperator && !operand2) {
+      if (numberValue == "." && operand1.includes(".")) return;
+      operand1 += numberValue;
+    } else if (operand1) {
+      if (numberValue == "." && operand2.includes(".")) return;
       operand2 += numberValue;
       calculate(operand1, operand2, operator);
-    } else {
-      operand1 += numberValue;
+      console.log(operand2);
     }
+    console.log(operand1);
+    appendNumber(numberValue);
+    isLastInputOperator = false;
   });
 });
 
@@ -100,9 +103,6 @@ deleteBtn.addEventListener("click", () => {
     result = "";
     resultDisplay.textContent = "";
   }
-  console.log(operand1);
-  console.log(operand2);
-  console.log(operator);
 });
 
 function deleteLastInput() {
