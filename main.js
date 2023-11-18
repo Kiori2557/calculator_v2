@@ -23,6 +23,25 @@ window.addEventListener("keydown", function (e) {
       calculate(operand1, operand2, operator);
     }
   }
+  if (keyValue == "Backspace") {
+    deleteLastInput();
+    if (!operand2 && !operator) {
+      operand1 = operand1.slice(0, -1);
+    } else if (operand2 && operator) {
+      operand2 = operand2.slice(0, -1);
+    } else {
+      operator = "";
+      isLastInputOperator = false;
+    }
+    console.log(operand1);
+    console.log(operand2);
+    calculate(operand1, operand2, operator);
+    if (!operand2 && operator) {
+      isLastInputOperator = true;
+      result = "";
+      resultDisplay.textContent = "";
+    }
+  }
   if (
     keyValue == "+" ||
     keyValue == "-" ||
@@ -41,7 +60,6 @@ window.addEventListener("keydown", function (e) {
       if (isLastInputOperator) {
         deleteLastInput();
       }
-      // operator = keyValue;
       appendNumber(keyValue);
       isLastInputOperator = true;
     }
@@ -96,9 +114,18 @@ allClear.addEventListener("click", resetAll);
 
 deleteBtn.addEventListener("click", () => {
   deleteLastInput();
-  operand2 = operand2.slice(0, -1);
+  if (!operand2 && !operator) {
+    operand1 = operand1.slice(0, -1);
+  } else if (operand2 && operator) {
+    operand2 = operand2.slice(0, -1);
+  } else {
+    operator = "";
+    isLastInputOperator = false;
+  }
+  console.log(operand1);
+  console.log(operand2);
   calculate(operand1, operand2, operator);
-  if (!operand2) {
+  if (!operand2 && operator) {
     isLastInputOperator = true;
     result = "";
     resultDisplay.textContent = "";
