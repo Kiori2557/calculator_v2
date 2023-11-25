@@ -12,6 +12,8 @@ const operatorBtns = document.querySelectorAll(".operatorBtn");
 const btns = document.querySelectorAll("button");
 const allClear = document.querySelector(".clearBtn");
 const deleteBtn = document.querySelector(".deleteBtn");
+const equalBtn = document.querySelector(".equalBtn");
+const history = document.querySelector(".history");
 
 window.addEventListener("keydown", function (e) {
   let keyValue = e.key;
@@ -65,10 +67,6 @@ window.addEventListener("keydown", function (e) {
     }
   }
   convertOperator(keyValue);
-  console.log(operand1);
-  console.log(operand2);
-  console.log(operator);
-  console.log(result);
 });
 
 numberBtns.forEach((numberBtn) => {
@@ -81,9 +79,7 @@ numberBtns.forEach((numberBtn) => {
       if (numberValue == "." && operand2.includes(".")) return;
       operand2 += numberValue;
       calculate(operand1, operand2, operator);
-      console.log(operand2);
     }
-    console.log(operand1);
     appendNumber(numberValue);
     isLastInputOperator = false;
   });
@@ -112,6 +108,12 @@ operatorBtns.forEach((operatorBtn) => {
 
 allClear.addEventListener("click", resetAll);
 
+equalBtn.addEventListener("click", function () {
+  if (!resultDisplay.textContent) return;
+  history.innerHTML += `<p>${inputDisplay.textContent} = <span class="historyResult">${resultDisplay.textContent}</span> </p>`;
+  resetAll();
+});
+
 deleteBtn.addEventListener("click", () => {
   deleteLastInput();
   if (!operand2 && !operator) {
@@ -122,13 +124,10 @@ deleteBtn.addEventListener("click", () => {
     operator = "";
     isLastInputOperator = false;
   }
-  console.log(operand1);
-  console.log(operand2);
   calculate(operand1, operand2, operator);
   if (!operand2 && operator) {
     isLastInputOperator = true;
     result = "";
-    resultDisplay.textContent = "";
   }
 });
 
