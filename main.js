@@ -14,6 +14,7 @@ const allClear = document.querySelector(".clearBtn");
 const deleteBtn = document.querySelector(".deleteBtn");
 const equalBtn = document.querySelector(".equalBtn");
 const history = document.querySelector(".history");
+const historyToggle = document.querySelector("#historyToggle");
 
 window.addEventListener("keydown", function (e) {
   let keyValue = e.key;
@@ -50,6 +51,9 @@ window.addEventListener("keydown", function (e) {
     keyValue == "*" ||
     keyValue == "/"
   ) {
+    if (keyValue == "/") {
+      e.preventDefault();
+    }
     if (inputDisplay.textContent) {
       if (result) {
         operand1 = "";
@@ -129,6 +133,10 @@ deleteBtn.addEventListener("click", () => {
     isLastInputOperator = true;
     result = "";
   }
+});
+
+historyToggle.addEventListener("click", () => {
+  history.classList.toggle("historyChange");
 });
 
 function deleteLastInput() {

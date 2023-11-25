@@ -84,3 +84,13 @@
   background-color: rgb(0, 0, 0);
   border-radius: 2px;
 }
+
+#historyToggle {
+  position: absolute;
+  right: 0;
+  bottom: 100px;
+}
+
+.historyChange {
+  visibility: hidden;
+}
