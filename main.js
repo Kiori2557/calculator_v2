@@ -113,7 +113,7 @@ operatorBtns.forEach((operatorBtn) => {
 allClear.addEventListener("click", resetAll);
 
 equalBtn.addEventListener("click", function () {
-  if (!resultDisplay.textContent) return;
+  if (!inputDisplay.textContent || !resultDisplay.textContent) return;
   history.innerHTML += `<p>${inputDisplay.textContent} = <span class="historyResult">${resultDisplay.textContent}</span> </p>`;
   resetAll();
 });
